@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     if (numThreads < 2) {
         printf("You need at least 2 Threads  (Worker & Master)\n");
-        //exit(3);
+        exit(3);
     }
     if (threadID == MASTER) {
 
@@ -74,17 +74,17 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < MatACol; i++) {
             for (int j = 0; j < MatBCol; j++) {
                 resultTest[i][j] = 0;
-                for (int k = 0; k < MatBCol; k++)
+                for (int k = 0; k < MatARow; k++)   //vllt hie MatBCol
                     resultTest[i][j] += MatA[i][k] * MatB[k][j];
             }
         }
         // Now Check if equal
         for (int i = 0; i < MatARow; i++) {
             for (int j = 0; j < MatBCol; j++) {
-                    printf("%f - %f\n" ,MatC[i][j], resultTest[i][j]);
+                    //printf("%f - %f\n" ,MatC[i][j], resultTest[i][j]);
                 if (MatC[i][j] != resultTest[i][j]) {
                     printf("Matrix is wrong\n");
-                    //exit(4);
+                    exit(4);
                 }
             }
         }
